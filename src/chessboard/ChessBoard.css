@@ -1,0 +1,33 @@
+.ChessBoard, .ChessBoard > div {
+  display: inline-block;  
+}
+
+.ChessBoard {
+  line-height: 0;
+  height: 70vh;
+  width: 70vh;
+}
+
+.block {
+  height: 12.5%;
+  width: 12.5%;
+}
+
+.black {
+  background-color: black;
+}
+
+.queen-piece, .queen-view {
+  height: 80%;
+  width: 80%;
+  margin: 10%;
+}
+
+.queen-piece {
+  background-image: url(queen.png);
+  background-size: contain;
+}
+
+.queen-view {
+  background-color: rgba(255,0,0,0.3);
+}

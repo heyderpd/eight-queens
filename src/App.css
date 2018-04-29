@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App > * {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+}
+
+title {
+  font-size: 28px;
+  text-transform: uppercase;
+}
