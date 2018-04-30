@@ -3,7 +3,7 @@ const removeValuesOfArray = (arr, _values) => {
 
   values.map(val => {
     const key = arr.indexOf(val)
-    if (key) {
+    if (key >= 0) {
       delete arr[key]
     }
   })

@@ -9,7 +9,7 @@ const getClassNameBlock = (isBlack) => {
 }
 
 class Block extends Component {
-  
+
   onClick () {
     this.props.trySwitchQueen(this.props.position)
   }

@@ -45,58 +45,53 @@ class ChessBoard extends Component {
     return toArray(this.state.board)
       .map(item => item)
   }
-  
+
   trySwitchQueen (position) {
     let { queens, allViews, board } = this.state
-    const { props: { hasQueen, hasViewOfQueen } } = board[position]
-    const views = getViewOfQueen(position)
+    const { props } = board[position]
+    const { hasQueen, hasViewOfQueen } = props
 
-    let hasQueenNewValue
-    if (hasQueen) {
-      hasQueenNewValue = false
-      queens = removeValuesOf(queens, position)
-      allViews = removeValuesOf(allViews, views)
-
-    } else if (!hasViewOfQueen) {
-      hasQueenNewValue = true
-      queens = [...queens, position]
-      allViews = removeRepeatsOf([...allViews, ...views])
-
-    } else {
+    if (hasViewOfQueen && !hasQueen) {
       return null
     }
 
-    const newBoardValues = views
+    if (hasQueen) {
+      queens = removeValuesOf(queens, position)
+
+    } else {
+      queens = removeRepeatsOf([...queens, position])
+    }
+
+    allViews = removeRepeatsOf(queens
       .reduce(
         (acc, pos) => {
-          const { props } = board[pos]
-          const newProps = {}
-          position === pos
-            ? newProps.hasQueen = hasQueenNewValue
-            : newProps.hasViewOfQueen = true
+          const views = getViewOfQueen(pos)
+          return [...acc, ...views]
+        }, []))
 
+    let newBoardValues = toArray(board)
+      .reduce(
+        (acc, item, pos) => {
+          const { props } = item
           acc[pos] = (
             <Block
               {...props}
-              {...newProps}
+              hasQueen={queens.indexOf(pos) >= 0}
+              hasViewOfQueen={allViews.indexOf(pos) >= 0}
               key={pos}
             />)
-
           return acc
-        }, {})
-console.log({newBoardValues})
+        },
+        {})
+
     this.setState({
       queens,
       allViews,
-      board: {
-        ...board,
-        ...newBoardValues
-      }
+      board: newBoardValues
     })
   }
-  
+
   render() {
-    console.log(this.state)
     return (
       <div className="ChessBoard">
         {this.moutBoardWith(this.state.board)}
