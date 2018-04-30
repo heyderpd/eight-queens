@@ -1,11 +1,13 @@
 .ChessBoard, .ChessBoard > div {
-  display: inline-block;  
+  display: inline-block;
 }
 
 .ChessBoard {
   line-height: 0;
   height: 70vh;
   width: 70vh;
+  border: 15px solid saddlebrown;
+  border-radius: 15px;
 }
 
 .block {
@@ -21,6 +23,7 @@
   height: 80%;
   width: 80%;
   margin: 10%;
+  border-radius: 10px;
 }
 
 .queen-piece {
@@ -29,5 +32,21 @@
 }
 
 .queen-view {
-  background-color: rgba(255,0,0,0.3);
+  background-color: rgba(255,0,0,0.5);
+}
+
+.count {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+button {
+  background-color: saddlebrown;
+  width: 135px;
+  height: 30px;
+  border-radius: 15px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
 }

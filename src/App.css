@@ -30,10 +30,11 @@
 .App > * {
   display: block;
   max-width: 80%;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 title {
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: bold;
   text-transform: uppercase;
 }

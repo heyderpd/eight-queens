@@ -84,6 +84,27 @@ class ChessBoard extends Component {
         },
         {})
 
+    this.updateQueenViews(queens, allViews)
+  }
+
+  updateQueenViews (queens, allViews) {
+    const { board } = this.state
+
+    let newBoardValues = toArray(board)
+      .reduce(
+        (acc, item, pos) => {
+          const { props } = item
+          acc[pos] = (
+            <Block
+              {...props}
+              hasQueen={queens.indexOf(pos) >= 0}
+              hasViewOfQueen={allViews.indexOf(pos) >= 0}
+              key={pos}
+            />)
+          return acc
+        },
+        {})
+
     this.setState({
       queens,
       allViews,
@@ -91,12 +112,22 @@ class ChessBoard extends Component {
     })
   }
 
+  clearQueens () {
+    this.updateQueenViews([], [])
+  }
+
   render() {
-    return (
+    return ([
+      <div className="count">
+        Queens: {this.state.queens.length}
+      </div>,
+      <button onClick={this.clearQueens.bind(this)}>
+        clear queens
+      </button>,
       <div className="ChessBoard">
         {this.moutBoardWith(this.state.board)}
       </div>
-    )
+    ])
   }
 }
 
